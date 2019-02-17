@@ -24,7 +24,45 @@ public class GetData {
     Boolean isSuccess = false;
 
     ScannedList scannedList=new ScannedList();
-    public List<Map<String,String>> doInBackground() {
+
+    public int doInBackground(String product_name,String product_qrcode) {
+
+        try
+        {
+            ConnectionHelper conStr=new ConnectionHelper();
+            connect =conStr.connectionclasss();        // Connect to database
+            if (connect == null)
+            {
+                ConnectionResult = "Check Your Internet Access!";
+            }
+            else
+            {
+                // Change below query according to your own database.
+               String query = "select product_id from Product where product_name = '"+product_name+"' and product_qrcode = "+product_qrcode;
+                //String query="select product_name from Product where product_name='Fan' and product_qrcode=0";
+                Statement stmt = connect.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+
+                String x= rs.toString();
+
+
+                ConnectionResult = " successful";
+                isSuccess=true;
+                connect.close();
+                return 100;
+            }
+        }
+        catch (Exception ex)
+        {
+            isSuccess = false;
+            ConnectionResult = ex.getMessage();
+            return -500;
+        }
+
+        return -100;
+
+    }
+   /* public List<Map<String,String>> doInBackground() {
 
         List<Map<String, String>> data = null;
         data = new ArrayList<Map<String, String>>();
@@ -39,65 +77,17 @@ public class GetData {
             else
             {
                 // Change below query according to your own database.
-                String query = "select * from Product";
+                String query = "select product_name,product_qrcode from Product";
 
                 Statement stmt = connect.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
-                String xx=rs.getString("product_name");
-                String xY=rs.getString("product_name");
-               
 
-                /*while (rs.next()){
-                    Map<String,String> datanum=new HashMap<String,String>();
-                    datanum.put("ID",rs.getString("CountryId"));
-                    datanum.put("Country",rs.getString("CountryName"));
-                    datanum.put("Capital",rs.getString("CapitalCity"));
-                    data.add(datanum);
-                }*/
-
-
-                ConnectionResult = " successful";
-                isSuccess=true;
-                connect.close();
-            }
-        }
-        catch (Exception ex)
-        {
-            isSuccess = false;
-            ConnectionResult = ex.getMessage();
-        }
-
-        return data;
-    }
-
-    /*public List<ProductAttributes> doInBackground() {
-
-        List<ProductAttributes> data = null;
-        data = new ArrayList<ProductAttributes>();
-        try
-        {
-            ConnectionHelper conStr=new ConnectionHelper();
-            connect =conStr.connectionclasss();        // Connect to database
-            if (connect == null)
-            {
-                ConnectionResult = "Check Your Internet Access!";
-            }
-            else
-            {
-                // Change below query according to your own database.
-                String query = "select * from Product";
-                Statement stmt = connect.createStatement();
-                ResultSet rs = stmt.executeQuery(query);
                 while (rs.next()){
-                    *//*Map<String,String> datanum=new HashMap<String,String>();
-                    datanum.put("ID",rs.getString("CountryId"));
-                    datanum.put("Country",rs.getString("CountryName"));
-                    datanum.put("Capital",rs.getString("CapitalCity"));
-                    data.add(datanum);*//*
-                    scannedList.makeToast(rs.getString("product_name"));
-                    ProductAttributes productAttributes=new ProductAttributes(rs.getInt("product_id"),rs.getString("product_name"),rs.getString("prouduct_qrcode"));
-                    System.out.println("Hello bhai"+rs.getString("product_name"));
-                    data.add(productAttributes);
+                    Map<String,String> datanum=new HashMap<String,String>();
+                    datanum.put("ID","1");
+                    datanum.put("Country",rs.getString("product_name"));
+                    datanum.put("Capital",rs.getString("product_qrcode"));
+                    data.add(datanum);
                 }
 
 
@@ -114,5 +104,7 @@ public class GetData {
 
         return data;
     }*/
+
+
 
 }

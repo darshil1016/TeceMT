@@ -7,7 +7,28 @@
     tools:context=".Startup.ScannedList">
 
 
-    <LinearLayout
+
+    <!--this is for test purpose-->
+
+    <EditText
+        android:id="@+id/product_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/product_qrcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/product_name"
+        android:layout_marginTop="90dp" />
+
+    <Button
+        android:layout_below="@id/product_qrcode"
+        android:id="@+id/buttonSend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="send"/>
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -17,11 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:scrollbars="vertical" />
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="match_parent"
-            android:layout_height="0dip"
-            android:layout_weight="1" />
+
 
         <LinearLayout
             android:id="@+id/ll_send_message"
@@ -53,7 +70,7 @@
                 android:text="send"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </LinearLayout>
-    </LinearLayout>
+    </LinearLayout>-->
 
 
 

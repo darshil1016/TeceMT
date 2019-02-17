@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         LV_Country=(ListView)findViewById(R.id.LV_Country);
         btn_Get=(Button)findViewById(R.id.btn_Get);
 
-        btn_Get.setOnClickListener(new View.OnClickListener() {
+    /*    btn_Get.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 List<Map<String,String>> MyData = null;
@@ -58,20 +58,20 @@ public class MainActivity extends AppCompatActivity {
                 LV_Country.setAdapter(ADAhere);
 
             }
-        });
-       /* btn_Get.setOnClickListener(new View.OnClickListener() {
+        });*/
+        btn_Get.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, ScannedList.class));
             }
-        });*/
+        });
 
 
         LV_Country.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 HashMap<String,Object> obj=(HashMap<String,Object>)ADAhere.getItem(position);
-                String ID=(String)obj.get("A");
+                String ID=(String)obj.get(id);
                 Toast.makeText(MainActivity.this, ID, Toast.LENGTH_SHORT).show();
 
             }
