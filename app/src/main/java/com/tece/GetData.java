@@ -45,7 +45,7 @@ public class GetData {
                 ResultSet rs = stmt.executeQuery(query);
                 String xx=rs.getString("product_name");
                 String xY=rs.getString("product_name");
-                System.out.println("Doneeeeee");
+                System.out.println("Doneeeeee bhai");
                 System.out.println("bhai "+xx);
 
                 /*while (rs.next()){
