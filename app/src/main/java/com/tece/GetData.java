@@ -43,7 +43,12 @@ public class GetData {
                 Statement stmt = connect.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
 
-                String x= rs.toString();
+                while(rs.next())
+                {
+                    String x= rs.getString("product_id");
+                    System.out.print("bhai "+x);
+                }
+
 
 
                 ConnectionResult = " successful";
