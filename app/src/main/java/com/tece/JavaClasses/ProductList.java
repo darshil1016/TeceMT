@@ -1,15 +1,44 @@
 package com.tece.JavaClasses;
 
 public class ProductList {
-    private String product_name, product_rackno, product_quantity;
+    private String product_name, product_rackno, product_quantity,product_qr_code,product_rack_qr_code;
+    private boolean status;
+
+    public String getProduct_qr_code() {
+        return product_qr_code;
+    }
+
+    public void setProduct_qr_code(String product_qr_code) {
+        this.product_qr_code = product_qr_code;
+    }
+
+    public String getProduct_rack_qr_code() {
+        return product_rack_qr_code;
+    }
+
+    public void setProduct_rack_qr_code(String product_rack_qr_code) {
+        this.product_rack_qr_code = product_rack_qr_code;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 
     public ProductList() {
     }
 
-    public ProductList(String product_name, String product_rackno, String product_quantity) {
+    public ProductList(String product_name, String product_rackno, String product_quantity,String product_qr_code,String product_rack_qr_code,boolean status) {
         this.product_name = product_name;
         this.product_rackno = product_rackno;
         this.product_quantity = product_quantity;
+        this.product_qr_code = product_qr_code;
+        this.product_rack_qr_code = product_rack_qr_code;
+        this.status = status;
+
     }
 
 

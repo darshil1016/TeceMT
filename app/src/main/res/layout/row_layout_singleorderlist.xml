@@ -12,33 +12,39 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/row_padding_vertical">
 
+
+
+    <ImageView
+        android:id="@+id/status"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+
+        />
+
     <TextView
         android:id="@+id/product_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:textSize="16dp"
+        android:layout_toLeftOf="@+id/status"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/product_rackno"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/status"
+
         android:layout_below="@id/product_name" />
 
     <TextView
         android:id="@+id/product_quantity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/status"
         android:layout_below="@id/product_rackno" />
 
-
-    <ImageView
-        android:id="@+id/status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:src="@mipmap/ic_launcher"
-         />
 
 </RelativeLayout>

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -26,6 +27,8 @@ public class SingleOrderListAdapter extends RecyclerView.Adapter<SingleOrderList
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView product_name, product_quantity, product_rackno;
         public RelativeLayout parentLayout;
+        public ImageView imageView;
+
 
         public MyViewHolder(View view) {
             super(view);
@@ -33,6 +36,7 @@ public class SingleOrderListAdapter extends RecyclerView.Adapter<SingleOrderList
             product_rackno = view.findViewById(R.id.product_rackno);
             product_quantity = view.findViewById(R.id.product_quantity);
             parentLayout = view.findViewById(R.id.parent_layout);
+            imageView = view.findViewById(R.id.status);
         }
     }
 
@@ -51,25 +55,33 @@ public class SingleOrderListAdapter extends RecyclerView.Adapter<SingleOrderList
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, final int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         ProductList productList = orderList.get(position);
-        holder.product_name.setText("Product Name "+productList.getProduct_name());
-        holder.product_rackno.setText("Product Rack No "+productList.getProduct_rackno());
-        holder.product_quantity.setText("Required Product Quantity "+productList.getProduct_quantity());
+        holder.product_name.setText("Name :"+productList.getProduct_name());
+        holder.product_rackno.setText("Rack No :"+productList.getProduct_rackno());
+        holder.product_quantity.setText("Required Quantity "+productList.getProduct_quantity());
+        if(productList.isStatus())
+        {
+            holder.imageView.setBackgroundResource(R.drawable.status_done);
+        }
+        else
+        {
+            holder.imageView.setBackgroundResource(R.drawable.status_notdone);
 
+        }
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(context, "hey "+position , Toast.LENGTH_SHORT).show();
 
-                showRackNoAlert();
+                showRackNoAlert(position,holder);
 
             }
         });
 
     }
 
-    private void showRackNoAlert() {
+    private void showRackNoAlert(final int position, final MyViewHolder holder) {
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
 
@@ -95,12 +107,20 @@ public class SingleOrderListAdapter extends RecyclerView.Adapter<SingleOrderList
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int which) {
                         // Write your code here to execute after dialog
+                        ProductList productList = orderList.get(position);
                         Toast.makeText(context, ""+rackno.getText().toString(), Toast.LENGTH_SHORT).show();
-                        showProductAlert(rackno.getText().toString());
+                        if(rackno.getText().toString().equals(productList.getProduct_rack_qr_code())) {
+                            showProductAlert(rackno.getText().toString(), position,holder);
+                        }
+                        else
+                        {
+                            Toast.makeText(context,"wrong rack qr", Toast.LENGTH_SHORT).show();
+
+                        }
 
                     }
 
-                    private void showProductAlert(final String toString) {
+                    private void showProductAlert(final String toString, final int position, final MyViewHolder holder) {
                         AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
 
                         //AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
@@ -125,8 +145,19 @@ public class SingleOrderListAdapter extends RecyclerView.Adapter<SingleOrderList
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog,int which) {
                                         // Write your code here to execute after dialog
-
+                                        ProductList productList= orderList.get(position);
                                         Toast.makeText(context, "Rack no is "+toString+" and product code is "+productqrcode.getText().toString(), Toast.LENGTH_SHORT).show();
+                                        if(productList.getProduct_qr_code().equals(productqrcode.getText().toString()))
+                                        {
+                                            productList.setStatus(true);
+                                            Toast.makeText(context,"Success", Toast.LENGTH_SHORT).show();
+                                            holder.imageView.setBackgroundResource(R.drawable.status_done);
+                                        }
+                                        else
+                                        {
+                                            Toast.makeText(context,"wrong qr", Toast.LENGTH_SHORT).show();
+
+                                        }
 
                                     }
                                 });

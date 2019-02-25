@@ -43,53 +43,15 @@ public class SingleOrderList extends AppCompatActivity  {
 
     private void prepareMovieData() {
 
-        ProductList productList = new ProductList("Product 1", "Rack 01", "2015");
+        ProductList productList = new ProductList("Product 1", "Rack 01", "2015","12345_product_qr","1_rack_qr",false);
         movieList.add(productList);
 
-        productList = new ProductList("Product 1", "Rack 01", "10");
+        productList = new ProductList("Product 1", "Rack 01", "2015","12345_product_qr","1_rack_qr",false);
         movieList.add(productList);
 
-        productList = new ProductList("Product 1", "Rack 08", "30");
+        productList = new ProductList("Product 1", "Rack 01", "2015","12345_product_qr","1_rack_qr",false);
         movieList.add(productList);
 
-        productList = new ProductList("Product 1", "Rack 07", "70");
-        movieList.add(productList);
-
-        productList = new ProductList("Product 1", "Rack 04", "1");
-        movieList.add(productList);
-
-        productList = new ProductList("Product 1", "Rack 03", "33");
-        movieList.add(productList);
-
-        productList = new ProductList("Product 1", "Rack 07", "21");
-        movieList.add(productList);
-
-        productList = new ProductList("Product 1", "Rack 03", "31");
-        movieList.add(productList);
-
-        productList = new ProductList("Product 1", "Rack 06", "44");
-        movieList.add(productList);
-
-        productList = new ProductList("Product 1", "Rack 04", "22");
-        movieList.add(productList);
-
-        productList = new ProductList("Product 1", "Rack 01", "41");
-        movieList.add(productList);
-
-        productList = new ProductList("Product 1", "Rack 08", "51");
-        movieList.add(productList);
-
-        productList = new ProductList("Product 1", "Rack 07", "66");
-        movieList.add(productList);
-
-        productList = new ProductList("Product 1", "Rack 07", "11");
-        movieList.add(productList);
-
-        productList = new ProductList("Product 1", "Rack 06", "21");
-        movieList.add(productList);
-
-        productList = new ProductList("Product 1", "Rack 05", "53");
-        movieList.add(productList);
 
         mAdapter.notifyDataSetChanged();
     }
